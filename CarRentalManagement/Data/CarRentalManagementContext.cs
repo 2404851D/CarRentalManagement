@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CarRentalManagement.Configurations.Entities;
+using CarRentalManagement.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CarRentalManagement.Domain;
-using CarRentalManagement.Configurations.Entities;
 
 namespace CarRentalManagement.Data
 {
-    public class CarRentalManagementContext : DbContext
+    public class CarRentalManagementContext : IdentityDbContext<CarRentalManagementUser>
     {
-        public CarRentalManagementContext (DbContextOptions<CarRentalManagementContext> options)
-            : base(options)
+        public CarRentalManagementContext(DbContextOptions<CarRentalManagementContext> options) : base(options)
         {
         }
 
@@ -30,7 +26,5 @@ namespace CarRentalManagement.Data
             builder.ApplyConfiguration(new MakeSeed());
             builder.ApplyConfiguration(new ModelSeed());
         }
-
-
     }
 }
