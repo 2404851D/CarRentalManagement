@@ -1,4 +1,5 @@
 ﻿@page "/bookings"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using CarRentalManagement.Domain
@@ -6,10 +7,12 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<CarRentalManagement.Data.CarRentalManagementContext> DbFactory
 
+@attribute [Authorize(Roles = "Administrator, User")]
+
 <PageTitle>Index</PageTitle>
 
 <h1>Index</h1>
-
+ 
 <p>
     <a href="bookings/create">Create New</a>
 </p>
@@ -26,8 +29,10 @@
 
     <TemplateColumn Context="booking">
         <a href="@($"bookings/edit?id={booking.Id}")">Edit</a> |
-        <a href="@($"bookings/details?id={booking.Id}")">Details</a> |
-        <a href="@($"bookings/delete?id={booking.Id}")">Delete</a>
+        <a href="@($"bookings/details?id={booking.Id}")">Details</a> 
+        <AuthorizeView Roles="Administrator">
+            | <a href="@($"bookings/delete?id={booking.Id}")">Delete</a>
+        </AuthorizeView>
     </TemplateColumn>
 </QuickGrid>
 

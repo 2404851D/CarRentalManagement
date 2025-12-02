@@ -2,9 +2,9 @@
 {
     public class Customer: BaseDoimanModel
     {
-        string? DrivingLicense { get; set; }
-        string? Address { get; set; }
-        string? ContactNumber { get; set; }
-        string?EmailAddress { get; set; }   
+        public string? DrivingLicense { get; set; }
+        public string? Address { get; set; }
+        public string? ContactNumber { get; set; }
+        public string?EmailAddress { get; set; }   
     }
 }
